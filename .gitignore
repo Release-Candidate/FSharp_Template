@@ -1,0 +1,10 @@
+# Generated files
+**/bin
+**/obj
+**/.vs
+
+# PyPI lock file
+Pipfile.lock
+
+# Coverage date
+coverage.xml

@@ -8,3 +8,5 @@ Pipfile.lock
 
 # Coverage date
 coverage.xml
+.fake
+.ionide

@@ -10,10 +10,8 @@ module Main
 
 open Expecto
 
-open TemplateLibrary
 
 /// <summary>Hugo</summary>
 [<EntryPoint>]
 let main argv =
-    Say.hello "Bland"
     Tests.runTestsInAssembly defaultConfig argv

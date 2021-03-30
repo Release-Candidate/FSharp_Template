@@ -4,20 +4,20 @@
 
 1. [Layout](https://gist.github.com/davidfowl/ed7564297c61fe9ab814#file-dotnetlayout-md)
 2. set `--warnon:3390`
-2. set `Warning Level`to 5
-3. install F# linter: 
+    set `Warning Level`to 5
+3. install F# linter:
 
    ```shell
    dotnet tool install -g dotnet-fsharplint
     ```
-    Usage: 
+    Usage:
 
     ```shell
     dotnet fsharplint lint FsharpTemplate.sln
     ```
 
-5. build: 
-    
+5. build:
+
    ```shell
    dotnet build
    ```
@@ -35,7 +35,7 @@
     dotnet test
     ```
 
-    Schöner:    
+    Better:
 
    ```shell
     dotnet run --project .\tests\TestsTemplate\TestsTemplate.fsproj
@@ -63,28 +63,17 @@
     dotnet nuget push ???.1.0.0.nupkg --api-key XXX --source https://api.nuget.org/v3/index.json
     ```
 
-9. Fsharp.Formatting [FSharp.Formatting](https://fsprojects.github.io/FSharp.Formatting/)
-
-   ```shell
-    dotnet tool install FSharp.Formatting.CommandTool
-    ```
-
-6. Fornax for documentation: [Fornax](https://github.com/ionide/Fornax)
-   
-   ```shell
-    dotnet tool install fornax -g
-    ```
-6. Alternative: use [WayPoint](https://ionide.io/Libraries/waypoint.html)
-
-    Doesn't really work right now ...
+10. Install FAKE (globally)
 
     ```shell
-    dotnet new -i Waypoint
+    dotnet tool install fake-cli -g
     ```
 
-    To generate new template:
+11. Install Paket (globally)
 
     ```shell
-    dotnet new Waypoint
+    dotnet tool install paket -g
     ```
-    
+
+12. Install pip and Python to use Sphinx for the documentation. (until [DocFX](https://dotnet.github.io/docfx/index.html)
+    is usable with F#)

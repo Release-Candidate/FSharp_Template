@@ -16,7 +16,7 @@ nav:
     - 'Report a Bug or a Feature Request': 'https://github.com/Release-Candidate/FSHARP_TEMPLATE/issues/new/choose'
     - 'Issue Tracker at GitHub': 'https://github.com/Release-Candidate/FSHARP_TEMPLATE/issues'
   - 'Installation & Usage':
-    - Usage: usage.md
+    - 'Installation & Usage': usage.md
     - License: license.md
   - Contributing:
     - Contributing: contributing.md
@@ -27,6 +27,7 @@ theme:
     prev_next_buttons_location: both
     navigation_depth: 8
     collapse_navigation: False
+    style_nav_header_background: "#5DB1DE"
 
 markdown_extensions:
     - markdown.extensions.fenced_code

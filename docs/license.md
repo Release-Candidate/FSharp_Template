@@ -1,6 +1,5 @@
 # License
 
-
 PYTHON_TEMPLATE is licensed under the MIT license:
 
 ```text

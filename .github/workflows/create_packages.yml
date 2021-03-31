@@ -14,14 +14,22 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.9"
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
         with:
             dotnet-version: 5.0.x
 
-      - name: Generate Documentation
+      - name: Setup pipenv
+        run: python -m pip install --upgrade pipenv
+
+      - name: Setup MkDocs
         run: |
           cd $GITHUB_WORKSPACE
+          python -m pipenv install --dev
 
       - name: Setup Tools
         run: |

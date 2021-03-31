@@ -28,7 +28,9 @@ jobs:
             dotnet-version: 5.0.x
 
       - name: Setup Tools
-        run: dotnet tool restore
+        run:  |
+            dotnet tool restore
+            dotnet paket restore
 
       - name: Run Tests
         shell: cmd
@@ -61,7 +63,9 @@ jobs:
             dotnet-version: 5.0.x
 
       - name: Setup Tools
-        run: dotnet tool restore
+        run:  |
+            dotnet tool restore
+            dotnet paket restore
 
       - name: Run Tests
         run:  |

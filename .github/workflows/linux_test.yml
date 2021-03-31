@@ -28,7 +28,9 @@ jobs:
             dotnet-version: 5.0.x
 
       - name: Setup Tools
-        run: dotnet tool restore
+        run: |
+            dotnet tool restore
+            dotnet paket restore
 
       - name: Run Tests
         run: |
@@ -61,14 +63,16 @@ jobs:
             dotnet-version: 5.0.x
 
       - name: Setup Tools
-        run: dotnet tool restore
+        run:  |
+            dotnet tool restore
+            dotnet paket restore
 
-      - name: Run Tests ${{ matrix.python-version }}
+      - name: Run Tests
         run:  |
           cd $GITHUB_WORKSPACE
           dotnet fake run ./build.fsx target TestsCoverage
 
-      - name: Upload coverage to Codecov ${{ matrix.python-version }}
+      - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         if: ${{ always() }}
         with:

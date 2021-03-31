@@ -177,7 +177,7 @@ Target.create "All" ignore
 
 "Clean" ==> "Build" ==> "Lint"
 
-"Clean" ==> "BuildDeb" ==> "TestsCoverage"
+"Clean" ==> "Build" ==> "TestsCoverage"
 
 "Clean"
   ==> "Build"

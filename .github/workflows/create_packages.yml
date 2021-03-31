@@ -23,6 +23,22 @@ jobs:
         with:
             dotnet-version: 5.0.x
 
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+            path: ~/.cache/pip
+            key: ${{ runner.os }}-FSHARP_TEMPLATE-pip-pipenv-${{ hashFiles('Pipfile.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-FSHARP_TEMPLATE-pip-pipenv
+
+      - name: Cache pipenv
+        uses: actions/cache@v2
+        with:
+            path: ~/.local/share/virtualenvs
+            key: ${{ runner.os }}-FSHARP_TEMPLATE-pipenv-${{ hashFiles('Pipfile.lock') }}
+            restore-keys: |
+                ${{ runner.os }}-FSHARP_TEMPLATE-pipenv-
+
       - name: Setup pipenv
         run: python -m pip install --upgrade pipenv
 
@@ -52,5 +68,5 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          name: Tar Archive Artifact
+          name: Nuget Packages
           path: ./src/**/*.nupkg

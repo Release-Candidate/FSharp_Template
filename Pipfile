@@ -4,10 +4,9 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+mkdocs = "*"
 
 [dev-packages]
-sphinx = "*"
-sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.9"

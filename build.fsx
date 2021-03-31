@@ -26,7 +26,27 @@ Target.initEnvironment ()
 Target.create "Clean" (fun _ ->
     !! "src/**/bin"
     ++ "src/**/obj"
+    ++ "tests/**/bin"
+    ++ "tests/**/obj"
     |> Shell.cleanDirs
+
+    !! "src/**/*.exn"
+    ++ "tests/**/*.exn"
+    ++ "tests/**/coverage.xml"
+    |> Seq.iter File.delete
+)
+
+//==============================================================================
+//                               Distclean
+//
+Target.create "Distclean" (fun _ ->
+    !! "site/"
+    ++ ".ionide/"
+    ++ ".fake"
+    ++ ".paket"
+    ++ ".paket-files"
+    ++ ".vs"
+    |> Shell.deleteDirs
 )
 
 
@@ -51,6 +71,18 @@ Target.create "Build" (fun _ ->
     !! "src/**/*.*proj"
     ++ "tests/**/*.*proj"
     |> Seq.iter (DotNet.build id)
+)
+
+
+//==============================================================================
+//                               Docs
+//
+Target.create "Docs" (fun _ ->
+    CreateProcess.fromRawCommand "pipenv" [ "run"; "mkdocs"; "build" ]
+    |> CreateProcess.ensureExitCode // will make sure to throw on error
+    |> CreateProcess.withWorkingDirectory "."
+    |> Proc.run
+    |> ignore
 )
 
 //==============================================================================
@@ -139,13 +171,18 @@ Target.create "All" ignore
 
 
 //==============================================================================
-//                              Targets
+//                             Target Dependencies
 //
+"Clean" ==> "Distclean"
+
+"Clean" ==> "Build" ==> "Lint"
+
+"Clean" ==> "BuildDeb" ==> "TestsCoverage"
+
 "Clean"
   ==> "Build"
-  ==> "Lint"
+  ==> "Docs"
   ==> "Tests"
-  ==> "TestsCoverage"
   ==> "Packages"
   ==> "All"
 

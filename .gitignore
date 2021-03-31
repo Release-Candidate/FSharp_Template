@@ -6,11 +6,14 @@
 # PyPI lock file
 Pipfile.lock
 
-# Coverage date
+# Coverage data
 coverage.xml
+*.exn
+
+# Fake and Ionide directories
 .fake
 .ionide
-*.exn
+
 
 # Paket dependency manager
 .paket/

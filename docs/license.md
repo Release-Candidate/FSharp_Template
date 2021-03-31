@@ -1,6 +1,6 @@
 # License
 
-PYTHON_TEMPLATE is licensed under the MIT license:
+FSHARP_TEMPLATE is licensed under the MIT license:
 
 ```text
 

@@ -15,3 +15,6 @@ coverage.xml
 # Paket dependency manager
 .paket/
 paket-files/
+
+# Mkdocs generated HTML
+/site

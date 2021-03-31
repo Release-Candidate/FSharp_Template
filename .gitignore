@@ -10,6 +10,7 @@ Pipfile.lock
 coverage.xml
 .fake
 .ionide
+*.exn
 
 # Paket dependency manager
 .paket/

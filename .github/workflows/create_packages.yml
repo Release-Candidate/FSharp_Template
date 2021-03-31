@@ -19,39 +19,19 @@ jobs:
         with:
             dotnet-version: 5.0.x
 
-      - name: Cache pip
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-pipenv
-          restore-keys: |
-            ${{ runner.os }}-pip-pipenv
-
-      - name: Cache pipenv
-        uses: actions/cache@v2
-        with:
-          path: ~/.local/share/virtualenvs
-          key: ${{ runner.os }}-pipenv-${{ hashFiles('Pipfile.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-pipenv-
-
-      - name: Setup pipenv
-        run: python -m pip install --upgrade pipenv
-
-      - name: Install dependencies using pipenv
-        run: |
-          cd $GITHUB_WORKSPACE
-          python -m pipenv install --dev
-
       - name: Generate Documentation
         run: |
           cd $GITHUB_WORKSPACE
-          cd ./tzolkin_calendar/doc && pipenv run make html
+
+      - name: Setup Tools
+        run: |
+            dotnet tool restore
+            dotnet paket restore
 
       - name: Build Package
         run: |
           cd $GITHUB_WORKSPACE
-          pipenv run python -m build
+          dotnet fake run ./build.fsx target Packages
 
       - name: Upload
         env:
@@ -65,4 +45,4 @@ jobs:
         if: ${{ always() }}
         with:
           name: Tar Archive Artifact
-          path: ./dist/*
+          path: ./src/**/*.nupkg

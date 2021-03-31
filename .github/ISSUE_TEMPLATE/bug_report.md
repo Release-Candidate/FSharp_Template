@@ -24,7 +24,7 @@ Add screenshots or your code or copy error messages to help explain your problem
 **Desktop (please complete the following information):**
  - OS: [e.g. Linux]
  - Version [e.g. 1.0.2]
- - Python version [e.g. 3.9.2]
+ - .Net version [e.g. 5.0.4]
 
 **Additional context**
 Add any other context about the problem here.

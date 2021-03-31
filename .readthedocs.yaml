@@ -13,5 +13,4 @@ mkdocs:
 python:
    version: 3.7
    install:
-   - method: pip
    - requirements: docs/requirements.txt

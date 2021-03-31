@@ -104,10 +104,20 @@ All content of FHARP_TEMPLATE is licensed under the MIT license, see file [LICEN
 
 ### GitHub Workflows/Actions
 
+#### Static Code Checkers
+
 [![FsharpLint Linter](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/fsharplint.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/fsharplint.yml)
+
+#### Tests on various OSes
+
 [![Tests Mac OS X latest](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/osx_test.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/osx_test.yml)
 [![Tests Ubuntu 20.04](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/linux_test.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/linux_test.yml)
 [![Tests Windows 2019](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/windows_test.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/windows_test.yml)
+[![Mac OS X latest](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/osx.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/osx.yml)
+[![Ubuntu 20.04](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/linux.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/linux.yml)
+[![Windows 2019](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/windows.yml/badge.svg)](https://github.com/Release-Candidate/FSharp_Template/actions/workflows/windows.yml)
+
+
 
 ### External Websites
 

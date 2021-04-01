@@ -29,6 +29,29 @@ and `tests/TestsTemplate`
 7. Add the source project(s) in `src/` and the test
 projects in `tests/` to the solution
 
+## Build Targets
+
+Before you can use the configured Tools of this template, 
+You have to download (aka. `restore`) the packages
+of the tools. 
+First, download the "dotnet tools" using the command
+
+```shell
+dotnet tool restore
+```
+
+now you have installed Fake, Paket and FSharpLint, 
+configured in the file `.config/dotnet-tools.json`
+
+Now, download ("restore") the Paket nuget packages. 
+
+
+```shell
+dotnet paket restore
+```
+
+## GitHub Workflows
+
 # Begin of the Template
 
 ## Installation and Usage

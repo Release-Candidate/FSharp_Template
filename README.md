@@ -10,9 +10,24 @@ This is a Github template for F#, using Paket as
 Nuget package Manager, Fake as build system, MkDocs
 to generate HTML documentation at [Read The Docs](https://readthedocs.org/), 
 Expecto, Unquote and FsCheck for the testing, AltCover to generate
-coverage reports at CodeCov and Github workflows. 
+coverage reports at CodeCov, FSharpLint as statíc code checker and Github workflows. 
 
-##
+## Template Usage
+
+1. Replace the string `FSHARP_TEMPLATE` (and *_TEMPALTE and FHARP_*) 
+with the real project name(s), and my name too, if
+you aren't mé ;). 
+2. Add the Nuget key and the Codecov token as secrets
+to the repository, named `CODECOV_SECRET` and `NUGET_PACKAGE`. 
+3. Rename, move and edit the two project files, 
+`src/LibTemplate/LibTemplate.fsproj` and `tests/TestsTemplate/TestsTemplate.fsproj`
+Same with the source files in `src/LibTemplate`
+and `tests/TestsTemplate`
+4. Change this Readme.md
+5. Change the documentation in `docs/`
+6. Add a solution file (`.sln`) in this root directory
+7. Add the source project(s) in `src/` and the test
+projects in `tests/` to the solution
 
 # Begin of the Template
 

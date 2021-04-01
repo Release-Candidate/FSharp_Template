@@ -6,7 +6,15 @@
 [![.Net 5.0 badge](https://img.shields.io/badge/.Net-5.0-brightgreen?style=flat)](https://dotnet.microsoft.com/download)
 [more badges](#badges)
 
+This is a Github template for F#, using Paket as
+Nuget package Manager, Fake as build system, MkDocs
+to generate HTML documentation at [Read The Docs](https://readthedocs.org/), 
+Expecto, Unquote and FsCheck for the testing, AltCover to generate
+coverage reports at CodeCov and Github workflows. 
 
+##
+
+# Begin of the Template
 
 ## Installation and Usage
 
@@ -20,7 +28,7 @@
 
 ## License
 
-All content of FHARP_TEMPLATE is licensed under the MIT license, see file [LICENSE](https://github.com/Release-Candidate/FSHARP_TEMPLATE/blob/main/LICENSE).
+All content of FSHARP_TEMPLATE is licensed under the MIT license, see file [LICENSE](https://github.com/Release-Candidate/FSHARP_TEMPLATE/blob/main/LICENSE).
 
 ## Badges
 

@@ -16,7 +16,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  tests-src:
+  tests-coverage:
     runs-on: ubuntu-20.04
 
     steps:
@@ -42,7 +42,7 @@ jobs:
         if: ${{ always() }}
         with:
           token: ${{ secrets.CODECOV_SECRET }}
-          files: ./tests/TestsTemplate/coverage.xml
+          files: ./test_results/coverage.xml
           directory: ./coverage/reports/
           # flags: unittest
           env_vars: OS,PYTHON
@@ -51,7 +51,7 @@ jobs:
           path_to_write_report: ./coverage/codecov_report.txt
           verbose: true
 
-  tests-package:
+  tests:
     runs-on: ubuntu-20.04
 
     steps:
@@ -70,18 +70,10 @@ jobs:
       - name: Run Tests
         run:  |
           cd $GITHUB_WORKSPACE
-          dotnet fake run ./build.fsx target TestsCoverage
+          dotnet fake run ./build.fsx target Tests
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+      - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          token: ${{ secrets.CODECOV_SECRET }}
-          files: ./tests/TestsTemplate/coverage.xml
-          directory: ./coverage/reports/
-          # flags: unittest
-          env_vars: OS,PYTHON
-          name: Linux-Test-Pkg
-          fail_ci_if_error: false
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+           name: Test Results
+           path: ./test_results/*.trx

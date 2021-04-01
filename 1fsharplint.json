@@ -1,7 +1,0 @@
-{
-    "ignoreFiles": [
-        "*assemblyinfo.*",
-		"tests/*"
-    ]
-   
-}

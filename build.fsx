@@ -6,6 +6,7 @@
 
 #r "paket:
 nuget AltCover.Api >= 7.0
+nuget Fake.DotNet.NuGet
 nuget Fake.DotNet.Cli
 nuget Fake.IO.FileSystem
 nuget Fake.Core.Target //"
@@ -13,6 +14,7 @@ nuget Fake.Core.Target //"
 
 open Fake.Core
 open Fake.DotNet
+open Fake.DotNet.NuGet
 open Fake.IO
 open Fake.IO.Globbing.Operators
 open Fake.Core.TargetOperators
@@ -32,6 +34,7 @@ let coverageFile = Path.combine testOutAbs "coverage.xml"
 
 // set common build options, like `nologo`, and the output path
 let commonDotNetOpts = DotNet.Options.Create ()
+let uploadOpts = NuGet.NuGetPushParams.Create ()
 let release = DotNet.BuildConfiguration.Release
 let debug = DotNet.BuildConfiguration.Debug
 
@@ -83,7 +86,7 @@ let setCoverageOpts config (opts:DotNet.TestOptions) =
 let setCoverageOptsRel = setCoverageOpts release
 let setCoverageOptsDeb = setCoverageOpts debug
 
-// Nuget packaging options
+// Nuget packaging options for target `Packages`
 let setPackageOpts (opts:DotNet.PackOptions) =
     { opts with
         NoLogo = true
@@ -98,20 +101,29 @@ let setPackageOpts (opts:DotNet.PackOptions) =
                   }
     }
 
-// Publish options for Target `Executables`
+// Nuget upload options for `Upload`
+let setUploadOpts (opts:DotNet.NuGetPushOptions) =
+    { opts with
+        Common = commonDotNetOpts
+        PushParams = { uploadOpts with
+                        Source = Some "https://api.nuget.org/v3/index.json"
+                        NoSymbols = true
+                        DisableBuffering = true
+                        ApiKey = None
+                      //  NoServiceEndpoint = false
+        }
+    }
+
+// Publish options for Target `Publish`
 let setPublishOptions rid (opts:DotNet.PublishOptions) =
     { opts with
         NoLogo = true
-        NoBuild = true
+        NoBuild = false
         OutputPath = Some exeOutPath
         Configuration = release
         SelfContained = Some true
         Runtime = Some rid
-        Common = { commonDotNetOpts with
-                     CustomParams = Some (
-                                          sprintf "/p:OutputPath=%s" builOutAbs
-                                         )
-                 }
+        Common = commonDotNetOpts
     }
 
 //==============================================================================
@@ -202,7 +214,15 @@ Target.create "Tests" (fun _ ->
 )
 
 //==============================================================================
-//                           Tests & Coverage (Always Debug)
+//                             Debug Tests
+//
+Target.create "TestsDeb" (fun _ ->
+    !! "tests/**/*.*proj"
+    |> Seq.iter (DotNet.test setTestOptsDeb)
+)
+
+//==============================================================================
+//                     Tests & Coverage (Always Debug)
 //
 Target.create "TestsCoverage" (fun _ ->
     !! "tests/**/*.*proj"
@@ -227,11 +247,19 @@ Target.create "Packages" (fun _ ->
     |> Seq.iter (DotNet.pack setPackageOpts)
 )
 
+//==============================================================================
+//                          Upload Packages
+//
+Target.create "Upload" (fun _ ->
+    !! (Path.combine packageOutputPath "*.nupkg")
+    |> Seq.iter (DotNet.nugetPush setUploadOpts)
+)
+
 
 //==============================================================================
-//                             Executables
+//                             Publish
 //
-Target.create "Executables" (fun _ ->
+Target.create "Publish" (fun _ ->
     !! "src/**/*.*proj"
     ++ "tests/**/*.*proj"
     |> Seq.iter (DotNet.publish (setPublishOptions "win-x64"))
@@ -259,9 +287,14 @@ Target.create "Executables" (fun _ ->
 //)
 
 //==============================================================================
-//                              All
+//                                 All
 //
 Target.create "All" ignore
+
+//==============================================================================
+//                                Release
+//
+Target.create "Release" ignore
 
 
 //==============================================================================
@@ -271,21 +304,26 @@ Target.create "All" ignore
 
 "Clean" ==> "Build" ==> "Lint"
 
-"Clean" ==> "Build" ==> "Packages"
+"Clean" ==> "Build" ==> "Packages" ==> "Upload" ==> "Release"
 
-"Clean" ==> "Build" ==> "Executables"
+"Clean" ==> "Build" ==> "Docs" ==> "Release"
 
-"Clean" ==> "Build" ==> "Docs"
+"Clean" ==> "Publish" ==> "Release"
+
+"Clean" ==> "Build" ==> "Tests"
+
+"Clean" ==> "BuildDeb" ==> "TestsDeb"
 
 "Clean" ==> "BuildDeb" ==> "TestsCoverage"
 
 "Clean" ==> "BuildDeb" ==> "TestsCoverageDeb"
 
 "Clean"
-  ==> "Build"
-  ==> "Docs"
- // ==> "Tests"
-  ==> "Packages"
-  ==> "All"
+    ==> "Build"
+    ==> "Docs"
+    ?=> "Tests"
+    ?=> "Publish"
+    ==> "Packages"
+    ==> "All"
 
 Target.runOrDefault "All"

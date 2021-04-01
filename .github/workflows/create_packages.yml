@@ -58,15 +58,12 @@ jobs:
           dotnet fake run ./build.fsx target Packages
 
       - name: Upload
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PIP_TOKEN }}
         run: |
           cd $GITHUB_WORKSPACE
-          pipenv run twine upload --repository pypi dist/*
+          dotnet fake run ./build.fsx target Upload
 
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
           name: Nuget Packages
-          path: ./src/**/*.nupkg
+          path: ./packages/*

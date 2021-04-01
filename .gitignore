@@ -26,3 +26,5 @@ paket-files/
 /artifacts
 /test_results
 /packages
+*.cache
+/artifactsPublishOutputs.*.txt

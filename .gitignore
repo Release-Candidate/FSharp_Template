@@ -21,3 +21,8 @@ paket-files/
 
 # Mkdocs generated HTML
 /site
+
+# ignore generated files
+/artifacts
+/test_results
+/packages

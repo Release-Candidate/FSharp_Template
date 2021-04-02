@@ -73,7 +73,6 @@ jobs:
       - name: Build Package
         run: |
           cd $GITHUB_WORKSPACE
-          ${{ github.ref }}
           dotnet fake run ./build.fsx target Packages $GIT_TAG_NAME
 
       - name: Upload

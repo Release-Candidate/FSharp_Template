@@ -29,26 +29,84 @@ and `tests/TestsTemplate`
 7. Add the source project(s) in `src/` and the test
 projects in `tests/` to the solution
 
-## Build Targets
+## Fake
 
 Before you can use the configured Tools of this template, 
-You have to download (aka. `restore`) the packages
+You have to download and install (aka. `restore`) the packages
 of the tools. 
-First, download the "dotnet tools" using the command
+1. First, download and install the "dotnet tools" using the command
 
-```shell
-dotnet tool restore
-```
+    ```shell
+    dotnet tool restore
+    ```
 
-now you have installed Fake, Paket and FSharpLint, 
-configured in the file `.config/dotnet-tools.json`
+ now you have installed Fake, Paket and FSharpLint, 
+ configured in the file `.config/dotnet-tools.json`
 
-Now, download ("restore") the Paket nuget packages. 
+2. Download and install ("restore") the Paket Nuget packages. 
+
+    ```shell
+    dotnet paket restore
+    ```
+3. Delete the file `build.fsx.lock` and run Fake, 
+To download and install (restore) it's nuget packages. 
+
+    ```shell
+    dotnet fake run build.fsx
+    ```
+
+4. To generate the documentation using MkDocs, a
+virtual Python environment is needed. A virtual Python
+environment is the same as the locally installed
+Nuget packages above. 
+So, first you need to install Python, if you don't
+have it installed already. In the file `Pipfile`
+there is a stanza saying
+
+    ```yml
+    [requires]
+    python_version = "3.9"
+    ```
+
+That's just because I used 3.9 when generating that
+template, and Pipenv is picky with the version mentioned
+there. Just edit that to match your installed
+Python version. Install `pipenv` using the package
+manager pip:
+
+    ```shell
+    pip install pipenv
+    ```
+Now you're ready to download and install the needed
+packages using pipenv:
+
+    ```shell
+    pipenv install --dev
+    ```
 
 
-```shell
-dotnet paket restore
-```
+
+### Build Targets
+
+The Fake script `build.fsx` defines the following targets:
+
+* `Clean`
+* `Distclean`
+* `Build` and `BuildDeb`
+* `Docs`
+* `Lint`
+* `Tests` and `TestsDeb`
+* `TestsCoverage` and `TestsCoverageDeb`
+* `Publish`
+* `Upload`
+* `Release`
+* `All`
+
+## MkDocs Files
+
+## Read the Docs Configuration
+
+## CodeCov Configuration
 
 ## GitHub Workflows
 

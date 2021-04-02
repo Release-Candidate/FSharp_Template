@@ -1,7 +1,7 @@
 # Changelog
 
 
-## Version 0.0.9 (2021-04-05)
+## Version 0.0.10 (2021-04-05)
 
 Changes:
 
@@ -12,7 +12,7 @@ Bug fixes:
 
 * No bugs to fix!
 
-## Version 0.0.8 (2021-04-05)
+## Version 0.0.9 (2021-04-05)
 
 Changes:
 

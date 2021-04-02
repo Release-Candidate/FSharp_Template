@@ -1,11 +1,11 @@
 # Changelog
 
 
-## Version 0.0.7 (2021-04-05)
+## Version 0.0.8 (2021-04-05)
 
 Changes:
 
-* Test tag releases
+* Test tag releases again
 * Another test point
 
 Bug fixes:

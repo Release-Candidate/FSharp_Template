@@ -396,7 +396,6 @@ Target.create "Release" ignore
     ==> "Docs"
     ?=> "Tests"
     ?=> "Publish"
-    ==> "Packages"
     ==> "All"
 
 Target.runOrDefaultWithArguments "All"

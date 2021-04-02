@@ -1,14 +1,13 @@
 # Changelog
 
 
-## Version 0.0.6 (2021-04-05)
+## Version 0.0.7 (2021-04-05)
 
 Changes:
 
-* fsdf
-* gfsdg fdg
+* Test tag releases
+* Another test point
 
-Bugfixes:
+Bug fixes:
 
-* fgdfsg
-* NO MORER BUGS!!!
+* No bugs to fix!

@@ -40,8 +40,8 @@ of the tools.
     dotnet tool restore
     ```
 
- now you have installed Fake, Paket and FSharpLint, 
- configured in the file `.config/dotnet-tools.json`
+    now you have installed Fake, Paket and FSharpLint, 
+configured in the file `.config/dotnet-tools.json`
 
 2. Download and install ("restore") the Paket Nuget packages. 
 
@@ -68,23 +68,21 @@ there is a stanza saying
     python_version = "3.9"
     ```
 
-That's just because I used 3.9 when generating that
+    That's just because I used 3.9 when generating that
 template, and Pipenv is picky with the version mentioned
 there. Just edit that to match your installed
 Python version. Install `pipenv` using the package
-manager pip:
+manager pip
 
     ```shell
     pip install pipenv
     ```
-Now you're ready to download and install the needed
-packages using pipenv:
+    Now you're ready to download and install the needed
+packages using pipenv
 
     ```shell
     pipenv install --dev
     ```
-
-
 
 ### Build Targets
 

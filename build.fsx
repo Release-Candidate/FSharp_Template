@@ -338,7 +338,6 @@ Target.create "Publish" (fun _ ->
     |> Seq.iter (DotNet.publish (setPublishOptions (getRID ())))
 )
 
-
 //==============================================================================
 //                      Package Fake 4 API
 //

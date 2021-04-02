@@ -1,3 +1,12 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2021 Roland Csaszar
+#
+# Project:  FSHARP_TEMPLATE
+# File:     windows_test.yml
+#
+################################################################################
+
 name: Tests Windows 2019
 
 # Controls when the action will run.

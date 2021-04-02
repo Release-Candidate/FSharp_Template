@@ -1,3 +1,12 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2021 Roland Csaszar
+#
+# Project:  FSHARP_TEMPLATE
+# File:     osx.yml
+#
+################################################################################
+
 name: Mac OS X latest
 
 # Controls when the action will run.

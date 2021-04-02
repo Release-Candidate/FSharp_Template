@@ -1,3 +1,12 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2021 Roland Csaszar
+#
+# Project:  FSHARP_TEMPLATE
+# File:     fsharplint.yml
+#
+################################################################################
+
 name: FsharpLint
 
 on: [push, pull_request]

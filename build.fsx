@@ -91,7 +91,7 @@ let setTestOpts config (opts:DotNet.TestOptions) =
     { opts with
         Configuration = config
         Output = Some buildOutputPath
-        NoBuild = true
+        NoBuild = false
         NoLogo = true
         Common = { commonDotNetOpts with
                     Verbosity = Some DotNet.Verbosity.Normal
@@ -108,7 +108,7 @@ let setCoverageOpts config (opts:DotNet.TestOptions) =
     { opts with
         Configuration = config
         Output = Some buildOutputPath
-        NoBuild = true
+        NoBuild = false
         NoLogo = true
         Common = { commonDotNetOpts with
                     CustomParams = Some (
@@ -383,13 +383,13 @@ Target.create "Release" ignore
 
 "Clean" ==> "Publish" ==> "Release"
 
-"Clean" ==> "Build" ==> "Tests"
+"Clean" ==> "Tests"
 
-"Clean" ==> "BuildDeb" ==> "TestsDeb"
+"Clean" ==> "TestsDeb"
 
-"Clean" ==> "BuildDeb" ==> "TestsCoverage"
+"Clean" ==> "TestsCoverage"
 
-"Clean" ==> "BuildDeb" ==> "TestsCoverageDeb"
+"Clean" ==> "TestsCoverageDeb"
 
 "Clean"
     ==> "Build"

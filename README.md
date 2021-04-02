@@ -161,6 +161,10 @@ Issue templates for GitHub in `.github/ISSUE_TEMPLATE/`
 
 # Begin of the Template
 
+## Download
+
+[Link to the latest release](https://github.com/Release-Candidate/FSHARP_TEMPLATE/releases/latest)
+
 ## Installation and Usage
 
 ### Prerequisites

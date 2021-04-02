@@ -1,4 +1,15 @@
 #!/bin/bash
+#
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2021 Roland Csaszar
+#
+# Project:  FSHARP_TEMPLATE
+# File:     get_changelog.sh
+#
+################################################################################
+
+# Returns the newest part of the changelog `CHANGELOG.md`.
+# For use with automatic releases.
 
 LINE_NUMS=$(grep '##' CHANGELOG.md -n| head -2|cut -f1 -d":"|paste -s -d' ')
 

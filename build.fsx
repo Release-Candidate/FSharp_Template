@@ -162,6 +162,7 @@ let setPublishOptions rid (opts:DotNet.PublishOptions) =
         SelfContained = Some true
         Runtime = Some rid
         Common = commonBuildOpts
+        VersionSuffix = Some rid
     }
 
 //==============================================================================

@@ -7,7 +7,7 @@
 [more badges](#badges)
 
 This is a Github template for F#, using Paket as
-Nuget package Manager, Fake as build system, MkDocs
+Nuget package manager, Fake as build system, MkDocs
 to generate HTML documentation at [Read The Docs](https://readthedocs.org/), 
 Expecto, Unquote and FsCheck for the testing, AltCover to generate
 coverage reports at CodeCov, FSharpLint as statíc code checker and Github workflows. 
@@ -63,7 +63,7 @@ So, first you need to install Python, if you don't
 have it installed already. In the file `Pipfile`
 there is a stanza saying
 
-    ```yml
+    ```ini
     [requires]
     python_version = "3.9"
     ```
@@ -102,11 +102,62 @@ The Fake script `build.fsx` defines the following targets:
 
 ## MkDocs Files
 
+* `mkdocs.yml` the MkDocs configuration, specially
+    the configuration of the navigation sidebar in `nav`
+    Which you need to edit 
+
+    ```yml
+    nav:
+    - Home: index.md
+    - Project Links:
+      - 'GitHub Project Page': 'https://github.com/Release-Candidate/FSHARP_TEMPLATE'
+      - 'Nuget Package': 'https://pypi.org/project/FSHARP_TEMPLATE/'
+      - 'Report a Bug or a Feature Request': 'https://github.com/Release-Candidate/FSHARP_TEMPLATE/issues/new/choose'
+      - 'Issue Tracker at GitHub': 'https://github.com/Release-Candidate/FSHARP_TEMPLATE/issues'
+    - 'Installation & Usage':
+      - 'Installation & Usage': usage.md
+      - License: license.md
+    - Contributing:
+      - Contributing: contributing.md
+   ```
+
+* `/docs` the markdown files that are used to generate the
+   HTML sites in the directory `sites`
+
 ## Read the Docs Configuration
+
+* `.readthedocs.yaml` the configuration for Read the Docs
+* `/docs/requirements.txt` the packages needed by MkDocs 
+   when generating the documentation at Read the Docs. 
+   Locally needed packages are configured in `Pipfile`
 
 ## CodeCov Configuration
 
+
+
 ## GitHub Workflows
+
+All tests and builds are executed on Linux, 
+Mac OS X and Windows. 
+
+There are the following GitHub workflows defined in
+the directory `.github/workflows`
+
+* `create_packages.yml`
+* `fsharplint.yml`
+* `linux.yml`
+* `linux_test.yml`
+* `osx.yml`
+* `osx_test.yml`
+* `windows.yml`
+* `windows_test.yml`
+
+## GitHub Issue Template
+
+Issue templates for GitHub in `.github/ISSUE_TEMPLATE/`
+
+* `bug_report.md` Bug report template 
+* `feature_request.md` Feature request template
 
 # Begin of the Template
 

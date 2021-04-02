@@ -1,3 +1,12 @@
+#!/bin/sh
+# SPDX-License-Identifier: MIT
+# Copyright (C) 2021 Roland Csaszar
+#
+# Project:  FSHARP_TEMPLATE
+# File:     create_packages.yml
+#
+################################################################################
+
 name: Nuget Packages
 
 on:
@@ -52,10 +61,16 @@ jobs:
             dotnet tool restore
             dotnet paket restore
 
+      - uses: olegtarasov/get-tag@v2.1
+        id: tagName
+        with:
+          tagRegex: "v(.*)"
+
       - name: Build Package
         run: |
           cd $GITHUB_WORKSPACE
-          dotnet fake run ./build.fsx target Packages
+          ${{ github.ref }}
+          dotnet fake run ./build.fsx target Packages ${{ steps.tagName.outputs.tag }}
 
       - name: Upload
         run: |

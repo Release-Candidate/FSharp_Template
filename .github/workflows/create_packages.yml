@@ -76,8 +76,8 @@ jobs:
 
       - name: Generate Changelog
         run: |
-            cd $GITHUB_WORKSPACE
-            ./scripts/get_changelog.sh > first_changelog.md
+            cd $GITHUB_WORKSPACE/scripts
+            ./get_changelog.sh > ../first_changelog.md
 
       - name: Release to GitHub
         uses: softprops/action-gh-release@v1

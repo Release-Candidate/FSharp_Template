@@ -276,6 +276,7 @@ These are the GitHub workflows defined in the directory `.github/workflows`
   generates a new GitHUb release with these files appended. Run automatically after tagging
   the source with a release tag of the form `v?.?.?` (**must be the same version as the newest in [CHANGELOG.md](./CHANGELOG.md)**).
   Appends the newest entry in [CHANGELOG.md](./CHANGELOG.md) to the release - script [`scripts/get_changelog.sh`](./scripts/get_changelog.sh)
+  See the [latest release](https://github.com/Release-Candidate/FSharp_Template/releases/latest) as an example
 * `fsharplint.yml` runs FSharpLint on all projects, after each `git push`
 * `linux.yml` runs a default build (target `All`) on Linux, after each `git push`
 * `linux_test.yml` runs the tests and coverage tests on Linux, uploads the test results as artifacts,
@@ -299,6 +300,8 @@ Issue templates for GitHub in `.github/ISSUE_TEMPLATE/`
 # Begin of the Template
 
 ## Download
+
+List of changes: [CHANGELOG.md](https://github.com/Release-Candidate/FSHARP_TEMPLATE/blob/main/CHANGELOG.md)
 
 [Link to the latest release](https://github.com/Release-Candidate/FSHARP_TEMPLATE/releases/latest)
 

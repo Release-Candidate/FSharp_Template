@@ -1,5 +1,5 @@
 wget https://dot.net/v1/dotnet-install.sh
 chmod 755 dotnet-install.sh
 ./dotnet-install.sh -c Current
-~/.dotnet/dotnet tool install --global Microsoft.dotnet-interactive
+~/.dotnet/dotnet tool install Microsoft.dotnet-interactive
 ~/.dotnet/dotnet interactive jupyter install

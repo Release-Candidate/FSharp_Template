@@ -164,7 +164,7 @@ jobs:
 
       - name: Publish Executable
         run: |
-          dotnet fake run build.fsx target Publish $GIT_TAG_NAME
+          dotnet fake run build.fsx target Publish ${{ env.GIT_TAG_NAME }}
 
       - name: Release DLLs to GitHub
         uses: svenstaro/upload-release-action@v2

@@ -2,7 +2,7 @@
 
 [![MIT license badge](https://img.shields.io/github/license/Release-Candidate/FSHARP_TEMPLATE)](https://github.com/Release-Candidate/FSHARP_TEMPLATE/blob/main/LICENSE)
 [![Documentation Status](https://readthedocs.org/projects/fsharp-template/badge/?version=latest)](https://fsharp-template.readthedocs.io/en/latest/?badge=latest)
-![OS badge](https://img.shields.io/badge/Runs%20on-Linux%7COS%20X%7CWindows-green)
+[![OS badge](https://img.shields.io/badge/Runs%20on-Linux%7COS%20X%7CWindows-brightgreen?style=flat)](https://dotnet.microsoft.com/download)
 [![F# 5.0 badge](https://img.shields.io/badge/F%23-5.0-brightgreen?style=flat)](https://fsharp.org/)
 [![.Net 5.0 badge](https://img.shields.io/badge/.Net-5.0-brightgreen?style=flat)](https://dotnet.microsoft.com/download)
 [more badges](#badges)
@@ -141,7 +141,13 @@ The Fake script [`build.fsx`](./build.fsx) defines the following targets:
   and be the same as the newest one in [CHANGELOG.md](./CHANGELOG.md).
   `packageProjs` in [`build.fsx`](./build.fsx) defines the projects to run `Packages` on.
   Packages are saved to the directory `packages`
-* `Upload` uploads all packages in the directory `packages` to NuGet.org.
+* `Upload` uploads all packages in the directory `packages` to NuGet.org. The NuGet API key
+  needs to be saved to the configuration using
+
+  ```shell
+  nuget setApiKey API_KEY
+  ```
+
 * `Release` is a pseudo-target, the same as `Build`, `Docs`, `Publish`, `Packages` and `Upload`. The
   build is done with the release configuration, the version **must** be given as argument on the command line
   and be the same as the newest one in [CHANGELOG.md](./CHANGELOG.md).

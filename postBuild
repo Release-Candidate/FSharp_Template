@@ -6,10 +6,6 @@ chmod 755 dotnet-install.sh
 ~/.dotnet/dotnet tool install Microsoft.dotnet-interactive
 ~/.dotnet/dotnet interactive jupyter install
 
-
-echo 'export PATH=${HOME}/.dotnet/:${HOME}/.dotnet/tools:${PATH}' >> ~/.bashrc
-
-cat ~/.bashrc
-
-export PATH=${HOME}/.dotnet/:${HOME}/.dotnet/tools:${PATH}
-
+sed -i 's@"dotnet"@"'${HOME}'/.dotnet/dotnet"@'  ~/.local/share/jupyter/kernels/.net-csharp/kernel.json
+sed -i 's@"dotnet"@"'${HOME}'/.dotnet/dotnet"@'  ~/.local/share/jupyter/kernels/.net-fsharp/kernel.json
+sed -i 's@"dotnet"@"'${HOME}'/.dotnet/dotnet"@'  ~/.local/share/jupyter/kernels/.net-powershell/kernel.json

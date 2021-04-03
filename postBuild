@@ -1,9 +1,8 @@
 wget https://dot.net/v1/dotnet-install.sh
 chmod 755 dotnet-install.sh
 ./dotnet-install.sh -c Current
-~/.dotnet/dotnet tool install Microsoft.dotnet-interactive
-~/.dotnet/dotnet interactive jupyter install
+export PATH=${PATH}:~/.dotnet/:~/.dotnet/tools
+dotnet tool install Microsoft.dotnet-interactive
+dotnet interactive jupyter install
 
-export PATH="${PATH}:~/.dotnet/"
-
-echo 'export PATH="${PATH}:~/.dotnet/"' >> ~/.bashrc
+echo 'export PATH=${PATH}:~/.dotnet/:~/.dotnet/tools' >> ~/.bashrc

@@ -77,7 +77,7 @@ jobs:
       - name: Generate Changelog
         run: |
             cd $GITHUB_WORKSPACE
-            ./get_changelog.sh > first_changelog.md
+            ./scripts/get_changelog.sh > first_changelog.md
 
       - name: Release to GitHub
         uses: softprops/action-gh-release@v1
@@ -189,7 +189,7 @@ jobs:
       - uses: actions/upload-artifact@v2
         if: ${{ always() }}
         with:
-          name: DLLs and Exes
+          name: DLLs and Exes ${{ runner.os }}
           path: |
             ./bin/*.dll
             ./bin/*.exe

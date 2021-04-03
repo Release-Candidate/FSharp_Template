@@ -133,10 +133,10 @@ let setPackageOpts version (opts:DotNet.PackOptions) =
         Configuration = release
         Common = { commonDotNetOpts with
                     CustomParams = Some (
-                                    sprintf "/p:OutputPath=%s /p:BaseIntermediateOutputPath=%s/ /p:IntermediateOutputPath=%s/" builOutAbs builOutAbs builOutAbs
+                                    sprintf "/p:OutputPath=%s /p:BaseIntermediateOutputPath=%s/ /p:IntermediateOutputPath=%s/ /property:Version=%s  -p:FileVersion=%s"
+                                            builOutAbs builOutAbs builOutAbs version version
                                     )
                   }
-        VersionSuffix = Some version
     }
 
 // Nuget upload options for `Upload` ===========================================
@@ -153,7 +153,7 @@ let setUploadOpts (opts:DotNet.NuGetPushOptions) =
     }
 
 // Publish options for Target `Publish` ========================================
-let setPublishOptions rid (opts:DotNet.PublishOptions) =
+let setPublishOptions rid version (opts:DotNet.PublishOptions) =
     { opts with
         NoLogo = true
         NoBuild = false
@@ -161,7 +161,12 @@ let setPublishOptions rid (opts:DotNet.PublishOptions) =
         Configuration = release
         SelfContained = Some true
         Runtime = Some rid
-        Common = commonBuildOpts
+        Common = { commonBuildOpts with
+                    CustomParams = Some (
+                                    sprintf "/p:OutputPath=%s /p:BaseIntermediateOutputPath=%s/ /p:IntermediateOutputPath=%s/ /property:Version=%s  -p:FileVersion=%s"
+                                        builOutAbs builOutAbs builOutAbs version version
+                        )
+                  }
         VersionSuffix = Some rid
     }
 
@@ -334,9 +339,13 @@ Target.create "Upload" (fun _ ->
 //==============================================================================
 //                             Publish
 //
-Target.create "Publish" (fun _ ->
+Target.create "Publish" (fun p ->
+    let changelogVers = getChangelogVersion ()
+    let argVersion = SemVer.parse p.Context.Arguments.Head
+
     publishProjs
-    |> Seq.iter (DotNet.publish (setPublishOptions (getRID ())))
+    |> Seq.iter (DotNet.publish (setPublishOptions (getRID ())
+                                (getVersion changelogVers argVersion)))
 )
 
 

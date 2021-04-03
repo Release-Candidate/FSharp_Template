@@ -1,11 +1,14 @@
 # F# Project Template
 
 [![MIT license badge](https://img.shields.io/github/license/Release-Candidate/FSHARP_TEMPLATE)](https://github.com/Release-Candidate/FSHARP_TEMPLATE/blob/main/LICENSE)
-[![Documentation Status](https://readthedocs.org/projects/fsharp-template/badge/?version=latest)](https://fsharp-template.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status badge](https://readthedocs.org/projects/fsharp-template/badge/?version=latest)](https://fsharp-template.readthedocs.io/en/latest/?badge=latest)
 [![OS badge](https://img.shields.io/badge/Runs%20on-Linux%7COS%20X%7CWindows-brightgreen?style=flat)](https://dotnet.microsoft.com/download)
 [![F# 5.0 badge](https://img.shields.io/badge/F%23-5.0-brightgreen?style=flat)](https://fsharp.org/)
 [![.Net 5.0 badge](https://img.shields.io/badge/.Net-5.0-brightgreen?style=flat)](https://dotnet.microsoft.com/download)
+[![Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Release-Candidate/FSharp_Template/main?filepath=TestFSharp.ipynb)
 [more badges](#badges)
+
+
 
 This is a cross platform Github template for F#, using [Paket](https://fsprojects.github.io/Paket/) as
 Nuget package manager, [Fake](https://fake.build/) as build system, [MkDocs](https://www.mkdocs.org/)
@@ -14,8 +17,35 @@ to generate HTML documentation at [Read The Docs](https://readthedocs.org/),
 and [FsCheck](https://fscheck.github.io/FsCheck/) for the testing, [AltCover](https://github.com/SteveGilham/altcover) to generate
 coverage reports for [CodeCov](https://about.codecov.io/), [FSharpLint](https://fsprojects.github.io/FSharpLint/)
 as static code checker and [Github workflows](https://github.com/Release-Candidate/FSharp_Template/actions).
+Includes a F# [Jupyter Notebook](https://jupyter.org/) with a [`postBuild`](./postBuild) script for [myBinder](https://mybinder.org/)
+to be able to use C# and PowerShell Kernels for the notebooks too.
 
 This template (and .DotNet 5.0) is tested and runs on Linux, Mac OS X and Windows.
+
+## Table of Content
+
+- [F# Project Template](#f-project-template)
+  - [Table of Content](#table-of-content)
+  - [Template Usage](#template-usage)
+  - [Jupyter Notebook](#jupyter-notebook)
+  - [Fake](#fake)
+    - [Build Targets](#build-targets)
+  - [MkDocs Files](#mkdocs-files)
+  - [GitHub Workflows](#github-workflows)
+  - [GitHub Issue Template](#github-issue-template)
+- [Begin of the Template](#begin-of-the-template)
+  - [Download](#download)
+  - [Installation and Usage](#installation-and-usage)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
+  - [Badges](#badges)
+    - [GitHub Workflows/Actions](#github-workflowsactions)
+      - [Static Code Checkers](#static-code-checkers)
+      - [Tests on various OSes](#tests-on-various-oses)
+    - [External Websites](#external-websites)
 
 ## Template Usage
 
@@ -35,6 +65,16 @@ and `tests/TestsTemplate`
 projects in `tests/` to the solution
 8. Edit the GitHub workflow [`.github/workflows/create_packages.yml`](./.github/workflows/create_packages.yml)
 to append your generated binaries to the releases
+
+## Jupyter Notebook
+
+There is an interactive F# [Jupyter Notebook](https://jupyter.org/) at [![Binder badge](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/Release-Candidate/FSharp_Template/main?filepath=TestFSharp.ipynb).
+
+The file [`postBuild`](./postBuild) holds the configuration for the Docker image generation
+at MyBinder, the Jupyter Notebook file is [`TestFSharp.ipynb`](./TestFSharp.ipynb). The
+Notebook supports C# and Powershell too.
+
+For more information, see [.Net Interactive](https://github.com/dotnet/interactive#notebooks-with-net)
 
 ## Fake
 

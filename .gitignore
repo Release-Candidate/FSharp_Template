@@ -28,3 +28,6 @@ paket-files/
 /packages
 *.cache
 /artifactsPublishOutputs.*.txt
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
